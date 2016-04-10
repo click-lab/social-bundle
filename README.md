@@ -19,11 +19,11 @@ Go to the root directory of the project and install all dependencies with :
 
 3.
 Setup your config.yml file with the configuration below:
-
+```
 clab_social:
 	#Enter your api domain here ex: api.click-eat.fr
 	api_domain: %your_api_domain% 
-
+```
 4.
 Go back to the root folder of the project and populate the database :
 

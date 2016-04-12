@@ -15,9 +15,9 @@
   "require" : {
     "gedmo/doctrine-extensions":"2.4.*",
     "vich/uploader-bundle": "dev-master",
-    "opauth/opauth": "1.0.*@dev",
-    "opauth/facebook": "1.0.*@dev",
-    "opauth/twitter": "1.0.*@dev",
+    "opauth/opauth": "^1.0",
+    "opauth/facebook": "^1.0",
+    "opauth/twitter": "^1.0",
     "liip/imagine-bundle": "^1.3",
     "clicklab/restaurantbundle":"^1.0",
     "symfony/symfony": "2.7.*",

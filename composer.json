@@ -16,7 +16,7 @@
     "gedmo/doctrine-extensions":"2.4.*",
     "vich/uploader-bundle": "dev-master",
     "opauth/opauth": "^1.0",
-    "opauth/facebook": "0.*",
+    "opauth/facebook": "^0.2.1",
     "opauth/twitter": "^1.0",
     "liip/imagine-bundle": "^1.3",
     "clicklab/restaurantbundle":"^1.0",

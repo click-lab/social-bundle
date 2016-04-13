@@ -1,7 +1,7 @@
 services:
     clab.social_post_listener:
         class: Clab\SocialBundle\Listener\SocialPostListener
-        arguments: [ @vich_uploader.templating.helper.uploader_helper, %clab_social.apidomain% ]
+        arguments: [ @vich_uploader.templating.helper.uploader_helper, %clab_social.api_domain% ]
         tags:
             - { name: doctrine.event_listener, event: postLoad }
 

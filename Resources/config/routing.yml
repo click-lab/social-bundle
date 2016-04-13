@@ -9,4 +9,4 @@ opauth:
 opauth_ttt:
     path: /opauth/{type}/{params}
     defaults: { _controller: ClabSocialBundle:Opauth:opauth, params: null }
-    host: %tttdomain%
+    host: %clab_social.tttdomain%

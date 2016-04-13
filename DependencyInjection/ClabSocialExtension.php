@@ -26,5 +26,6 @@ class ClabSocialExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('clab_social.api_domain', $config['api_domain']);
+        $container->setParameter('clab_social.tttdomain', $config['tttdomain']);
     }
 }

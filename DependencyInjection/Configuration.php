@@ -27,6 +27,10 @@ class Configuration implements ConfigurationInterface
                 ->isRequired()
                 ->cannotBeEmpty()
                 ->end()
+                >scalarNode('tttdomain')
+                ->info('Enter the ttt domain here ex: ttruct.clickeat.fr ')
+                ->isRequired()
+                ->end()
             ->end()
         ;
 

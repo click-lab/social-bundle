@@ -53,6 +53,8 @@ class SocialManager
             $message = 'Nous sommes fermés aujourd\'hui';
             $restaurant->getSocialProfile()->setTttEventAnnulationMessage($message);
         }
+
+        return true;
     }
 
     public function getOpauthLink($type, $service, $socialProfile, $callbackRoute, $callbackRouteParameters = array())
@@ -89,7 +91,6 @@ class SocialManager
         ]);
 
         $output = json_decode($res->getBody()->getContents(), true);
-
         $fb = new Facebook(array(
             'app_id' => $this->container->getParameter('facebook_pro_app_id'),
             'app_secret' => $this->container->getParameter('facebook_pro_app_secret'),
@@ -98,18 +99,20 @@ class SocialManager
         ));
         $request = $fb->request('GET', '/me/accounts', $parameters);
         $response = $fb->getClient()->sendRequest($request);
-        if ($response && isset($response->getDecodedBody()['data']) && $data = $response->getDecodedBody()['data']) {
+        $data = $response->getDecodedBody()['data'];
+
+        if ($response && isset($data) && $data) {
             foreach ($data as $page) {
-                if (!$socialProfile->hasPage($page->id)) {
+                if (!$socialProfile->hasPage($page['id'])) {
                     $facebookPage = new SocialFacebookPage();
                     $socialProfile->addFacebookPage($facebookPage);
-                    $facebookPage->setAccessToken($page->access_token);
-                    $facebookPage->setName($page->name);
-                    $facebookPage->setFacebookId($page->id);
+                    $facebookPage->setAccessToken($page['access_token']);
+                    $facebookPage->setName($page['name']);
+                    $facebookPage->setFacebookId($page['id']);
                     $this->em->persist($facebookPage);
                 } else {
-                    $facebookPage = $socialProfile->hasPage($page->id);
-                    $facebookPage->setAccessToken($page->access_token);
+                    $facebookPage = $socialProfile->hasPage($page['id']);
+                    $facebookPage->setAccessToken($page['access_token']);
                 }
             }
 
@@ -237,7 +240,7 @@ class SocialManager
             'app_id' => $this->container->getParameter('facebook_pro_app_id'),
             'app_secret' => $this->container->getParameter('facebook_pro_app_secret'),
             'fileUpload' => true,
-            'cookie' => true,
+            'access_token' => $page->getAccessToken(),
         ));
         $url = '/'.$page->getFacebookId().'/feed';
         $request = $fb->request('POST', $url, $options);
